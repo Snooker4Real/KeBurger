@@ -15,10 +15,7 @@ import java.util.List;
 *
 * */
 
-import io.github.juneau001.burgers.business.Accompagnement;
-import io.github.juneau001.burgers.business.Boisson;
-import io.github.juneau001.burgers.business.Burger;
-import io.github.juneau001.burgers.business.Sauce;
+import io.github.juneau001.burgers.business.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -46,10 +43,10 @@ public class IndexServlet extends HttpServlet {
     public IndexServlet(){
         super();
         Calendar cal = Calendar.getInstance();
-        int anneeEnCOurs = cal.get(Calendar.YEAR);
+        int anneeEnCours = cal.get(Calendar.YEAR);
 
         for (int i = 0; i < 4; i++){
-            annees.add(anneeEnCOurs + i);
+            annees.add(anneeEnCours + i);
         }
 
         mois.add("Janvier");
@@ -65,14 +62,14 @@ public class IndexServlet extends HttpServlet {
         mois.add("Novembre");
         mois.add("Décembre");
 
-        burgers.add(new Burger("Burger Guacamole", 6.5f));
-        burgers.add(new Burger("Quarter-Pounder", 5.1f));
-        burgers.add(new Burger("BBQ-Burger", 7f));
-        burgers.add(new Burger("CheeseBurger", 2f));
+        burgers.add(new Burger("Burger Guacamole", 6.50f));
+        burgers.add(new Burger("Quarter-Pounder", 5.10f));
+        burgers.add(new Burger("BBQ-Burger", 7.00f));
+        burgers.add(new Burger("CheeseBurger", 2.00f));
 
-        accompagnements.add(new Accompagnement("Frites"));
-        accompagnements.add(new Accompagnement("Bacon-Frites"));
-        accompagnements.add(new Accompagnement("Salade"));
+        accompagnements.add(new Accompagnement("Frites", 1.50f));
+        accompagnements.add(new Accompagnement("Bacon-Frites", 2.00f));
+        accompagnements.add(new Accompagnement("Salade", 3.00f));
 
         boissons.add(new Boisson("Coca Cola"));
         boissons.add(new Boisson("Montain Dew"));
@@ -97,8 +94,8 @@ public class IndexServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println(new Date() + " : nouvelle requête HTTP dont la méthode est GET");
-        //request.setAttribute("années", annees);
-        //request.setAttribute("années", annees);
+        request.setAttribute("annees", annees);
+        request.setAttribute("mois", mois);
         //On enrichit l'objet request avec la liste des burgers
         //Cette liste sera envoyée à la vue
         request.setAttribute("burgers", burgers);
@@ -116,7 +113,6 @@ public class IndexServlet extends HttpServlet {
             // TODO Auto-generated method stub
             super.doPost(req, resp);
         }
-
          */
     }
 }

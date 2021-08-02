@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+<div class="card text-center d-flex justify-content-center" style="width: 20rem">
     <h1>Commande de Restauration Rapide</h1>
     <form>
         <div class="col">
@@ -32,7 +32,7 @@
             <label>Votre Burger :</label>
             <select class="form-select" aria-label="Default select example">
                 <c:forEach var="burger" items="${burgers}">
-                    <option value="${burger.id}">${burger.nom}</option> <label>${burger.prix} Euros</label>
+                    <option value="${burger.id}">${burger.nom} (${burger.prix})</option> <label>${burger.prix} Euros</label>
                 </c:forEach>
             </select>
         </div>
@@ -41,7 +41,7 @@
             <label>Votre accompagnement : </label>
             <select class="form-select" aria-label="Default select example">
                 <c:forEach var="accompagnement" items="${accompagnement}">
-                    <option value="${accompagnement.nom}">${accompagnement.nom}</option>
+                    <option value="${accompagnement.nom}">${accompagnement.nom} (${accompagnement.sup})</option>
                 </c:forEach>
             </select>
         </div>
@@ -80,25 +80,17 @@
         <div class="col">
         <label>Mois : </label>
             <select class="form-select" aria-label="Default select example">
-                <option selected>Mois</option>
-                <option value="1">1 - Janvier</option>
-                <option value="1">2 - Février</option>
-                <option value="1">3 - Mars</option>
-                <option value="1">4 - Avril</option>
-                <option value="1">5 - Mai</option>
-                <option value="1">6 - Juin</option>
-                <option value="1">7 - Juillet</option>
-                <option value="1">8 - Août</option>
-                <option value="1">9 - Septembre</option>
-                <option value="1">10 - Octobre</option>
-                <option value="1">11 - Novembre</option>
-                <option value="1">12 - Décembre</option>
+                <!--
+                <c:forEach var="mois" items="mois">
+                    <option value="${mois}">mois</option>
+                </c:forEach>
+
+                -->
             </select>
         </div>
         <div class="col">
             <label>Année : </label>
             <select class="form-select" aria-label="Default select example">
-                <option selected>Mois</option>
                 <option value="1">2021</option>
                 <option value="1">2022</option>
                 <option value="1">2023</option>
@@ -114,6 +106,6 @@
             <button type="submit" class="btn btn-success">Commander</button>
         </div>
     </form>
-
+</div>
 </body>
 </html>
