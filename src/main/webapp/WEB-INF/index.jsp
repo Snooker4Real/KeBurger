@@ -1,0 +1,119 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KeBurger</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+
+    <h1>Commande de Restauration Rapide</h1>
+    <form>
+        <div class="col">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Sur place
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    A emporter
+                </label>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <label>Votre Burger :</label>
+            <select class="form-select" aria-label="Default select example">
+                <c:forEach var="burger" items="${burgers}">
+                    <option value="${burger.id}">${burger.nom}</option> <label>${burger.prix} Euros</label>
+                </c:forEach>
+            </select>
+        </div>
+
+        <div class="col">
+            <label>Votre accompagnement : </label>
+            <select class="form-select" aria-label="Default select example">
+                <c:forEach var="accompagnement" items="${accompagnement}">
+                    <option value="${accompagnement.nom}">${accompagnement.nom}</option>
+                </c:forEach>
+            </select>
+        </div>
+
+        <div class="col">
+            <label>Votre boisson: </label>
+            <select class="form-select" aria-label="Default select example">
+                <c:forEach var="boissons" items="${boissons}">
+                    <option value="${boissons.nom}">${boissons.nom}</option>
+                </c:forEach>
+
+            </select>
+        </div>
+        <div class="col form-floating">
+            <label for="floatingTextarea2">Remarque sur la commande</label>
+            <textarea class="form-control" placeholder="Laissez une remarque" id="floatingTextarea2" style="height: 100px"></textarea>
+        </div>
+
+        <div class="col">
+            <label>Sauce :</label>
+            <c:forEach var="sauces" items="${sauces}">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        ${sauces.nom}
+                    </label>
+                </div>
+            </c:forEach>
+        </div>
+
+        <div class="col input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Numéro de CB</span>
+            <input type="text" class="form-control" placeholder="CB" aria-label="CB" aria-describedby="basic-addon1" maxlength="16">
+        </div>
+
+        <div class="col">
+        <label>Mois : </label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Mois</option>
+                <option value="1">1 - Janvier</option>
+                <option value="1">2 - Février</option>
+                <option value="1">3 - Mars</option>
+                <option value="1">4 - Avril</option>
+                <option value="1">5 - Mai</option>
+                <option value="1">6 - Juin</option>
+                <option value="1">7 - Juillet</option>
+                <option value="1">8 - Août</option>
+                <option value="1">9 - Septembre</option>
+                <option value="1">10 - Octobre</option>
+                <option value="1">11 - Novembre</option>
+                <option value="1">12 - Décembre</option>
+            </select>
+        </div>
+        <div class="col">
+            <label>Année : </label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Mois</option>
+                <option value="1">2021</option>
+                <option value="1">2022</option>
+                <option value="1">2023</option>
+                <option value="1">2024</option>
+            </select>
+        </div>
+        <div class="col input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Cryptogramme</span>
+            <input type="text" class="form-control" placeholder="Cryptogramme" aria-label="Cryptogramme" aria-describedby="basic-addon1" maxlength="3">
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Commander</button>
+        </div>
+    </form>
+
+</body>
+</html>
