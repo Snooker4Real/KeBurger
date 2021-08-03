@@ -6,12 +6,14 @@
     <meta charset="UTF-8">
     <title>KeBurger</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 </head>
 <body>
 
-<div class="card text-center d-flex justify-content-center" style="width: 20rem">
+<div class="main card text-center d-flex justify-content-center" style="width: 20rem">
     <h1>Commande de Restauration Rapide</h1>
-    <form>
+    <!--Après que le formulaire est submit ça nours enverra à la page /Add-->
+    <form action="Entete" method="get">
         <div class="col">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
@@ -40,7 +42,7 @@
         <div class="col">
             <label>Votre accompagnement : </label>
             <select class="form-select" aria-label="Default select example">
-                <c:forEach var="accompagnement" items="${accompagnement}">
+                <c:forEach var="accompagnement" items="${accompagnements}">
                     <option value="${accompagnement.nom}">${accompagnement.nom} (${accompagnement.sup})</option>
                 </c:forEach>
             </select>
@@ -49,8 +51,8 @@
         <div class="col">
             <label>Votre boisson: </label>
             <select class="form-select" aria-label="Default select example">
-                <c:forEach var="boissons" items="${boissons}">
-                    <option value="${boissons.nom}">${boissons.nom}</option>
+                <c:forEach var="boisson" items="${boissons}">
+                    <option value="${boisson.nom}">${boisson.nom}</option>
                 </c:forEach>
 
             </select>
@@ -62,11 +64,11 @@
 
         <div class="col">
             <label>Sauce :</label>
-            <c:forEach var="sauces" items="${sauces}">
+            <c:forEach var="sauce" items="${sauces}">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
-                        ${sauces.nom}
+                        ${sauce.nom}
                     </label>
                 </div>
             </c:forEach>
@@ -103,7 +105,7 @@
         </div>
 
         <div class="col-12">
-            <button type="submit" class="btn btn-success">Commander</button>
+            <button type="submit" value="Entete" class="btn btn-success">Commander</button>
         </div>
     </form>
 </div>

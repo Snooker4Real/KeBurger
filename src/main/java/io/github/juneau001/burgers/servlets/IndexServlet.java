@@ -33,7 +33,7 @@ public class IndexServlet extends HttpServlet {
     private static final List<Accompagnement> accompagnements = new ArrayList<>();
     private static final List<Boisson> boissons = new ArrayList<>();
     private static final List<Sauce> sauces = new ArrayList<>();
-
+    private static List<Commande> commandes = new ArrayList<>();
 
     private static final long serialVersionUID = 1L;
 
@@ -65,7 +65,7 @@ public class IndexServlet extends HttpServlet {
         burgers.add(new Burger("Burger Guacamole", 6.50f));
         burgers.add(new Burger("Quarter-Pounder", 5.10f));
         burgers.add(new Burger("BBQ-Burger", 7.00f));
-        burgers.add(new Burger("CheeseBurger", 2.00f));
+        burgers.add(new Burger("CheeseBurger", 3.00f));
 
         accompagnements.add(new Accompagnement("Frites", 1.50f));
         accompagnements.add(new Accompagnement("Bacon-Frites", 2.00f));
@@ -83,6 +83,9 @@ public class IndexServlet extends HttpServlet {
         sauces.add(new Sauce("Algérienne"));
         sauces.add(new Sauce("Moutarde"));
         sauces.add(new Sauce("Blanche"));
+
+        commandes.add(new Commande(""));
+
     }
 
     /**
@@ -99,7 +102,7 @@ public class IndexServlet extends HttpServlet {
         //On enrichit l'objet request avec la liste des burgers
         //Cette liste sera envoyée à la vue
         request.setAttribute("burgers", burgers);
-        request.setAttribute("accompagnement",accompagnements);
+        request.setAttribute("accompagnements",accompagnements);
         request.setAttribute("boissons", boissons);
         request.setAttribute("sauces",sauces);
 
