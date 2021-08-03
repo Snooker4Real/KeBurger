@@ -84,7 +84,7 @@ public class IndexServlet extends HttpServlet {
         sauces.add(new Sauce("Moutarde"));
         sauces.add(new Sauce("Blanche"));
 
-        commandes.add(new Commande(""));
+        //commandes.add(new Commande(""));
 
     }
 
@@ -110,12 +110,42 @@ public class IndexServlet extends HttpServlet {
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 
 
-        /*
-        @Override
-        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            // TODO Auto-generated method stub
-            super.doPost(req, resp);
-        }
-         */
+
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+    }
+
+    private Burger getBurger(Long [] idBurger) {
+        for (Burger burger : burgers) {
+            if (burger.getNom().equals(idBurger)) {
+                return burger;
+            }
+        }
+        return null;
+    }
+
+    private Accompagnement getAccompagnement(Long[] idAccompagnement){
+        for (Accompagnement accompagnement : accompagnements){
+            if (accompagnement.getNom().equals(idAccompagnement)){
+                return accompagnement;
+            }
+        }
+        return null;
+    }
+
+    private Boisson getBoisson(Long[] idBoisson){
+        for (Boisson boisson : boissons){
+            if (boisson.getNom().equals(idBoisson)){
+                return  boisson;
+            }
+        }
+        return null;
+    }
+
+
+
+
 }

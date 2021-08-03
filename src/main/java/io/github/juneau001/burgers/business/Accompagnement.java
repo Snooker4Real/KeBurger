@@ -2,10 +2,13 @@ package io.github.juneau001.burgers.business;
 
 public class Accompagnement {
 
+    private Long id;
     private String nom;
     private float sup;
+    private static long inc = 0L;
 
     public Accompagnement() {
+        id = inc++;
     }
 
     public Accompagnement(String nom, float sup) {
@@ -32,7 +35,8 @@ public class Accompagnement {
     @Override
     public String toString() {
         return "Accompagnement{" +
-                "nom='" + nom + '\'' +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
                 ", sup=" + sup +
                 '}';
     }

@@ -9,9 +9,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/Entete"})
 public class Entete extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
-
-    }
 
 }

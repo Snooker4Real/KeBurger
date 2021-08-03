@@ -13,7 +13,7 @@
 <div class="main card text-center d-flex justify-content-center" style="width: 20rem">
     <h1>Commande de Restauration Rapide</h1>
     <!--Après que le formulaire est submit ça nours enverra à la page /Add-->
-    <form action="Entete" method="get">
+    <form action="Entete" method="post">
         <div class="col">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
@@ -82,12 +82,11 @@
         <div class="col">
         <label>Mois : </label>
             <select class="form-select" aria-label="Default select example">
-                <!--
-                <c:forEach var="mois" items="mois">
-                    <option value="${mois}">mois</option>
+
+                <c:forEach var="mois" items="${mois}">
+                    <option value="${mois}">${mois}</option>
                 </c:forEach>
 
-                -->
             </select>
         </div>
         <div class="col">
