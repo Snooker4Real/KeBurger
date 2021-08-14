@@ -16,27 +16,37 @@ import java.util.List;
 * */
 
 import io.github.juneau001.burgers.business.*;
+import io.github.juneau001.burgers.services.impl.AccService;
+import io.github.juneau001.burgers.services.impl.BoissonService;
+import io.github.juneau001.burgers.services.impl.BurgerService;
+import io.github.juneau001.burgers.services.impl.SauceService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-// Annotation pour configurer la Servlet dans Tomcat
+/**
+ * La classe IndexServlet hérite de la classe HttpServlet
+ * Toutes nos servlets doivent hériter de cette super classe
+ *
+ * Une servlet est une classe Java capable de traiter une requête HTTP
+ * et de formuler une réponse
+ */
+// Annotation pour configurer la servlet dans Tomcat
 // La servlet écoute sur l'url /index
-@WebServlet(urlPatterns = { "/index", "/commande", "/toto"}, loadOnStartup = 1)
+
+@WebServlet(urlPatterns = { "/index"}, loadOnStartup = 1)
 public class IndexServlet extends HttpServlet {
 
     private static List<Integer> annees = new ArrayList<>();
     private static final List<String> mois = new ArrayList<>();
-    private static final List<Burger> burgers = new ArrayList<>();
-    private static final List<Accompagnement> accompagnements = new ArrayList<>();
-    private static final List<Boisson> boissons = new ArrayList<>();
-    private static final List<Sauce> sauces = new ArrayList<>();
-    private static List<Commande> commandes = new ArrayList<>();
-
+    private static final BurgerService burgers = new BurgerService();
+    private static final AccService accompagnements = new AccService();
+    private static final BoissonService boissons = new BoissonService();
+    private static final SauceService sauces = new SauceService();
+    private static final List<Commande> commandes = new ArrayList<>();
     private static final long serialVersionUID = 1L;
-
     /**
      * @see HttpServlet#HttpServlet()
     * */
@@ -61,31 +71,6 @@ public class IndexServlet extends HttpServlet {
         mois.add("Octobre");
         mois.add("Novembre");
         mois.add("Décembre");
-
-        burgers.add(new Burger("Burger Guacamole", 6.50f));
-        burgers.add(new Burger("Quarter-Pounder", 5.10f));
-        burgers.add(new Burger("BBQ-Burger", 7.00f));
-        burgers.add(new Burger("CheeseBurger", 3.00f));
-
-        accompagnements.add(new Accompagnement("Frites", 1.50f));
-        accompagnements.add(new Accompagnement("Bacon-Frites", 2.00f));
-        accompagnements.add(new Accompagnement("Salade", 3.00f));
-
-        boissons.add(new Boisson("Coca Cola"));
-        boissons.add(new Boisson("Montain Dew"));
-        boissons.add(new Boisson("Iced Tea"));
-        boissons.add(new Boisson("Pepsi"));
-        boissons.add(new Boisson("Powerade"));
-        boissons.add(new Boisson("Eau"));
-
-        sauces.add(new Sauce("Ketchup"));
-        sauces.add(new Sauce("Mayonnaise"));
-        sauces.add(new Sauce("Algérienne"));
-        sauces.add(new Sauce("Moutarde"));
-        sauces.add(new Sauce("Blanche"));
-
-        //commandes.add(new Commande(""));
-
     }
 
     /**
@@ -99,53 +84,21 @@ public class IndexServlet extends HttpServlet {
         System.out.println(new Date() + " : nouvelle requête HTTP dont la méthode est GET");
         request.setAttribute("annees", annees);
         request.setAttribute("mois", mois);
+
+        AccService.init();
+        BurgerService.init();
+        BoissonService.init();
+        SauceService.init();
         //On enrichit l'objet request avec la liste des burgers
         //Cette liste sera envoyée à la vue
-        request.setAttribute("burgers", burgers);
-        request.setAttribute("accompagnements",accompagnements);
-        request.setAttribute("boissons", boissons);
-        request.setAttribute("sauces",sauces);
+        request.setAttribute("burgers", burgers.getList());
+        System.out.println(accompagnements.getList());
+        request.setAttribute("accompagnements",accompagnements.getList());
+        System.out.println(boissons.getList());
+        request.setAttribute("boissons", boissons.getList());
+        request.setAttribute("sauces",sauces.getList());
 
         //On fait suivre à la vue index.jsp
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
-
-
-
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-    }
-
-    private Burger getBurger(Long [] idBurger) {
-        for (Burger burger : burgers) {
-            if (burger.getNom().equals(idBurger)) {
-                return burger;
-            }
-        }
-        return null;
-    }
-
-    private Accompagnement getAccompagnement(Long[] idAccompagnement){
-        for (Accompagnement accompagnement : accompagnements){
-            if (accompagnement.getNom().equals(idAccompagnement)){
-                return accompagnement;
-            }
-        }
-        return null;
-    }
-
-    private Boisson getBoisson(Long[] idBoisson){
-        for (Boisson boisson : boissons){
-            if (boisson.getNom().equals(idBoisson)){
-                return  boisson;
-            }
-        }
-        return null;
-    }
-
-
-
-
 }

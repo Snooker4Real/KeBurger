@@ -1,16 +1,28 @@
 package io.github.juneau001.burgers.business;
 
 public class Boisson {
-
+    private static Long sID = 0L;
     private Long id;
     private String nom;
-    private static long inc = 0L;
+    private float prix;
+
     public Boisson() {
-        id = inc++;
+        id = ++sID;
     }
 
-    public Boisson(String nom) {
+    public Boisson(String nom, float prix) {
+        this();
         this.nom = nom;
+        this.prix = prix;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -21,10 +33,16 @@ public class Boisson {
         this.nom = nom;
     }
 
+    public float getPrix() {
+        return prix;
+    }
+
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
     @Override
     public String toString() {
-        return "Boisson{" +
-                "nom='" + nom + '\'' +
-                '}';
+        return "Boisson [nom=" + nom + ", prix=" + prix + "]";
     }
 }

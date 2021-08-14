@@ -1,19 +1,27 @@
 package io.github.juneau001.burgers.business;
 
 public class Accompagnement {
-
+    private static Long sID = 0L;
     private Long id;
     private String nom;
-    private float sup;
-    private static long inc = 0L;
+    private float prix;
 
     public Accompagnement() {
-        id = inc++;
+        id = ++sID;
     }
 
-    public Accompagnement(String nom, float sup) {
+    public Accompagnement(String nom, float prix) {
+        this();
         this.nom = nom;
-        this.sup = sup;
+        this.prix = prix;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -24,20 +32,16 @@ public class Accompagnement {
         this.nom = nom;
     }
 
-    public float getSup() {
-        return sup;
+    public float getPrix() {
+        return prix;
     }
 
-    public void setSup(float sup) {
-        this.sup = sup;
+    public void setPrix(float prix) {
+        this.prix = prix;
     }
 
     @Override
     public String toString() {
-        return "Accompagnement{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", sup=" + sup +
-                '}';
+        return "Accompagnement [nom=" + nom + ", prix=" + prix + "]";
     }
 }

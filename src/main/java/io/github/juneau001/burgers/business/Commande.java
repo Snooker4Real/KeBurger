@@ -1,35 +1,54 @@
 package io.github.juneau001.burgers.business;
 
-public class Commande {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Commande {
+    private static Long sID = 0L;
     private Long id;
-    private static Long inc = 0L;
+
     private boolean surPlace;
     private Burger burger;
-    private Boisson boisson;
     private Accompagnement accompagnement;
-    private Sauce sauce;
-    private String remarque;
-    private String cbNumber;
-    private String mois;
-    private String annees;
-    private String cryptogramme;
+    private Boisson boisson;
+    private String remarques;
+    private float prix;
+
+    private List<Sauce> sauces = new ArrayList<>();
+    private String noCarte;
+    private String expiration;
+    private String codeCVV;
 
     public Commande() {
-        id= ++inc;
+        id = ++sID;
     }
 
-    public Commande(boolean surPlace, Burger burger, Boisson boisson, Accompagnement accompagnement, Sauce sauce, String remarque, String cbNumber, String mois, String annees, String cryptogramme) {
-        this.surPlace = surPlace;
+    public Commande(Long id, Burger burger, Accompagnement accompagnement, Boisson boisson, String remarques,
+                    List<Sauce> sauces) {
+        this();
+        this.id = id;
         this.burger = burger;
-        this.boisson = boisson;
         this.accompagnement = accompagnement;
-        this.sauce = sauce;
-        this.remarque = remarque;
-        this.cbNumber = cbNumber;
-        this.mois = mois;
-        this.annees = annees;
-        this.cryptogramme = cryptogramme;
+        this.boisson = boisson;
+        this.remarques = remarques;
+        this.sauces = sauces;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public boolean isSurPlace() {
+        return surPlace;
+    }
+
+    public void setSurPlace(boolean surPlace) {
+        this.surPlace = surPlace;
     }
 
     public Burger getBurger() {
@@ -40,14 +59,6 @@ public class Commande {
         this.burger = burger;
     }
 
-    public Boisson getBoisson() {
-        return boisson;
-    }
-
-    public void setBoisson(Boisson boisson) {
-        this.boisson = boisson;
-    }
-
     public Accompagnement getAccompagnement() {
         return accompagnement;
     }
@@ -56,75 +67,68 @@ public class Commande {
         this.accompagnement = accompagnement;
     }
 
-    public Sauce getSauce() {
-        return sauce;
+    public Boisson getBoisson() {
+        return boisson;
     }
 
-    public void setSauce(Sauce sauce) {
-        this.sauce = sauce;
+    public void setBoisson(Boisson boisson) {
+        this.boisson = boisson;
     }
 
-    public String getRemarque() {
-        return remarque;
+    public String getRemarques() {
+        return remarques;
     }
 
-    public void setRemarque(String remarque) {
-        this.remarque = remarque;
+    public void setRemarques(String remarques) {
+        this.remarques = remarques;
     }
 
-    public boolean isSurPlace() {
-        return surPlace;
+    public List<Sauce> getSauces() {
+        return sauces;
     }
 
-    public void setSurPlace(boolean surPlace) {
-        this.surPlace = surPlace;
+    public void setSauces(List<Sauce> sauces) {
+        this.sauces = sauces;
     }
 
-    public String getCbNumber() {
-        return cbNumber;
+
+
+    public float getPrix() {
+        return prix;
     }
 
-    public void setCbNumber(String cbNumber) {
-        this.cbNumber = cbNumber;
+    public void setPrix(float prix) {
+        this.prix = prix;
     }
 
-    public String getMois() {
-        return mois;
+    public String getNoCarte() {
+        return noCarte;
     }
 
-    public void setMois(String mois) {
-        this.mois = mois;
+    public void setNoCarte(String noCarte) {
+        this.noCarte = noCarte;
     }
 
-    public String getAnnees() {
-        return annees;
+    public String getExpiration() {
+        return expiration;
     }
 
-    public void setAnnees(String annees) {
-        this.annees = annees;
+    public void setExpiration(String expiration) {
+        this.expiration = expiration;
     }
 
-    public String getCryptogramme() {
-        return cryptogramme;
+    public String getCodeCVV() {
+        return codeCVV;
     }
 
-    public void setCryptogramme(String cryptogramme) {
-        this.cryptogramme = cryptogramme;
+    public void setCodeCVV(String codeCVV) {
+        this.codeCVV = codeCVV;
     }
 
     @Override
     public String toString() {
-        return "Commande{" +
-                "surPlace=" + surPlace +
-                ", burger=" + burger +
-                ", boisson=" + boisson +
-                ", accompagnement=" + accompagnement +
-                ", sauce=" + sauce +
-                ", remarque='" + remarque + '\'' +
-                ", cbNumber='" + cbNumber + '\'' +
-                ", mois='" + mois + '\'' +
-                ", annees='" + annees + '\'' +
-                ", cryptogramme='" + cryptogramme + '\'' +
-                '}';
+        return "Commande [id=" + id + ", surPlace=" + surPlace + ", burger=" + burger + ", accompagnement="
+                + accompagnement + ", boisson=" + boisson + ", remarques=" + remarques + ", prix=" + prix + ", sauces="
+                + sauces + ", noCarte=" + noCarte + ", expiration=" + expiration + ", codeCVV=" + codeCVV + "]";
     }
 }
